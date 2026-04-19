@@ -2,8 +2,35 @@ export gqtaskDir=$(pwd)
 #echo $gqtaskDir
 export cygtaskDir=$(cygpath -w $gqtaskDir)
 #echo $cygtaskDir
-alias todo='cd $gqtaskDir && npm start $(pwd)/todos.json $1 $2 $3 $4 $5'
-alias todocyg='cd $gqtaskDir && npm start $(cygpath -w $(pwd))\\todos.json $1 $2 $3 $4 $5'
+
+unalias todo 2>/dev/null
+unalias todocyg 2>/dev/null
+
+function todo(){
+    export currBashDir="$(pwd)"
+    #echo "$gqtaskDir"
+    cd $gqtaskDir
+    #echo $(pwd)
+    npm start $currBashDir/todos.json $1 $2 $3 $4 $5
+    #echo $currBashDir
+    cd $currBashDir
+}
+
+function todocyg(){
+    export currDosDir="$(cygpath -w $(pwd))"
+    export currBashDir="$(pwd)"
+    #echo "$gqtaskDir"
+    cd $gqtaskDir
+    #echo $(pwd)
+    npm start $currDosDir\\todos.json $1 $2 $3 $4 $5
+    #echo $currBashDir
+    cd $currBashDir
+}
+
+function gotogqtask(){
+    cd $gqtaskDir
+}
+
 echo todo alias added...
-echo in linux use  todo init abc
-echo in cygwin use  todocyg init abc
+echo in linux use    todo init abc
+echo in cygwin use   todocyg init abc
