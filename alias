@@ -1,0 +1,9 @@
+export gqtaskDir=$(pwd)
+#echo $gqtaskDir
+export cygtaskDir=$(cygpath -w $gqtaskDir)
+#echo $cygtaskDir
+alias todo='cd $gqtaskDir && npm start $(pwd)/todos.json $1 $2 $3 $4 $5'
+alias todocyg='cd $gqtaskDir && npm start $(cygpath -w $(pwd))\\todos.json $1 $2 $3 $4 $5'
+echo todo alias added...
+echo in linux use  todo init abc
+echo in cygwin use  todocyg init abc
